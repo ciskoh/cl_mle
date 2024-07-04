@@ -3,7 +3,6 @@ import os
 import dotenv
 import pandas as pd
 from dill import load
-from src.models.predict_model import robust_predict
 
 def fullname(o):
   return o.__module__ + "." + o.__class__.__name__
@@ -59,9 +58,10 @@ def predict(modelname):
     data = pd.DataFrame(request.get_json(), index=[0])
     try:
         list_files = os.listdir(os.path.join(model_path, modelname))
-        print(list_files)
         if len(list_files) == 1:
-            prediction=robust_predict(os.path.join(model_path, modelname,list_files[0]), pd.DataFrame(data))
+            with open(os.path.join(model_path, modelname, list_files[0]), "rb") as f:
+                pipeline_mlr = load(f)
+            prediction = pipeline_mlr.predict(data)
             return jsonify(prediction.tolist())
         else:
             return "No Models", 404
