@@ -87,3 +87,25 @@ Project Organization
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
 
 
+# Build docker
+
+0- start docker engine
+
+1- build image
+
+`docker build -t cali-app:latest .`
+
+2- Docker run
+
+`docker run -p 5000:5000 cali-app:latest`
+
+
+
+# Deploy with lightsail
+
+`aws lightsail create-container-service --service-name flask-service --power small --scale 1`
+
+`aws lightsail push-container-image --service-name flask-service --label cali-app --image cali-app:latest`
+
+
+
