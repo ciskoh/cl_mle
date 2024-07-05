@@ -9,6 +9,7 @@ def fullname(o):
 
 
 dotenv.load_dotenv('.env')
+
 model_path = os.getenv('MODEL_PATH')
 app = Flask(__name__)
 
