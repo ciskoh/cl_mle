@@ -8,8 +8,9 @@ def fullname(o):
   return o.__module__ + "." + o.__class__.__name__
 
 
-dotenv.load_dotenv('.env')
-model_path = os.getenv('MODEL_PATH')
+# dotenv.load_dotenv('.env')
+# model_path = os.getenv('MODEL_PATH')
+model_path="models"
 app = Flask(__name__)
 
 @app.route('/')

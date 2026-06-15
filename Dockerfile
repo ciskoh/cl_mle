@@ -22,7 +22,6 @@ RUN pip install -r requirements.txt
 # Copy the content of the local src directory to the working directory
 COPY models ./models
 COPY src ./src
-COPY .env .
 COPY app.py .
 
 # run flask app using gunicorn webserver
